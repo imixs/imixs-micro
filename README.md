@@ -7,8 +7,8 @@ To add the workflow engine into your Maven java project add the following maven 
 ```xml
     <dependency>
         <groupId>org.imixs.workflow</groupId>
-        <artifactId>imixs-workflow-core</artifactId>
-        <version>6.1.0-SNAPSHOT</version>
+        <artifactId>imixs-micro</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </dependency>
 ```
 
