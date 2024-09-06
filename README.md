@@ -5,11 +5,11 @@ A lightweight workflow service running on plain Java VMs
 To add the workflow engine into your Maven java project add the following maven dependencies:
 
 ```xml
-		<dependency>
-			<groupId>org.imixs.workflow</groupId>
-			<artifactId>imixs-workflow-core</artifactId>
-			<version>6.1.0-SNAPSHOT</version>
-		</dependency>
+    <dependency>
+        <groupId>org.imixs.workflow</groupId>
+        <artifactId>imixs-workflow-core</artifactId>
+        <version>6.1.0-SNAPSHOT</version>
+    </dependency>
 ```
 
 ## Example
