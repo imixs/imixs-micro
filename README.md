@@ -14,7 +14,13 @@ To add the workflow engine into your Maven java project add the following maven 
 
 ## Example
 
-To run the engine, see the following code example
+To run the engine you just need to define a BPMN model
+
+
+<img src="doc/model-example-01.png" alt="Imixs Workflow"  />
+
+
+and run the engine in your Java code. See the following code example:
 
 ```java
     private MicroWorkflowService workflowService;
