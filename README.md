@@ -2,6 +2,16 @@
 
 A lightweight workflow service running on plain Java VMs 
 
+To add the workflow engine into your Maven java project add the following maven dependencies:
+
+```xml
+		<dependency>
+			<groupId>org.imixs.workflow</groupId>
+			<artifactId>imixs-workflow-core</artifactId>
+			<version>6.1.0-SNAPSHOT</version>
+		</dependency>
+```
+
 ## Example
 
 To run the engine, see the following code example
@@ -24,8 +34,9 @@ To run the engine, see the following code example
 
     try {
         workflowService.processWorkItem(workItem);
-
-        int newTask=workItem.getTaskID();
+        // next task is now 1100
+        assertEquals(1100, workItem.getTaskID());
+        assertEquals(workItem.getItemValueString(WorkflowKernel.WORKFLOWSTATUS), "Task 2");
 
     } catch (ModelException | ProcessingErrorException | PluginException e) {
         e.printStackTrace();

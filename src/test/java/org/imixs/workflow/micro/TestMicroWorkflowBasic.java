@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.logging.Logger;
 
 import org.imixs.workflow.ItemCollection;
+import org.imixs.workflow.WorkflowKernel;
 import org.imixs.workflow.exceptions.ModelException;
 import org.imixs.workflow.exceptions.PluginException;
 import org.imixs.workflow.exceptions.ProcessingErrorException;
@@ -52,6 +53,7 @@ public class TestMicroWorkflowBasic {
             assertEquals("1.0.0", workItem.getModelVersion());
 
             // verify data
+            assertEquals(workItem.getItemValueString(WorkflowKernel.WORKFLOWSTATUS), "Task 2");
             assertEquals(workItem.getItemValueString("device.data"), "Hello World");
         } catch (ModelException | ProcessingErrorException | PluginException e) {
             e.printStackTrace();
