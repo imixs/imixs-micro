@@ -1,0 +1,34 @@
+FROM registry.access.redhat.com/ubi8/openjdk-17:latest
+
+USER root
+
+# Install necessary tools
+RUN microdnf install -y tar gzip curl
+
+# Set GraalVM version
+ENV GRAALVM_VERSION=22.3.2
+ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+
+# Download and install GraalVM
+RUN curl -L https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${GRAALVM_VERSION}/graalvm-ce-java17-linux-amd64-${GRAALVM_VERSION}.tar.gz -o graalvm.tar.gz \
+    && tar -xzf graalvm.tar.gz -C /opt \
+    && mv /opt/graalvm-ce-java17-${GRAALVM_VERSION} /opt/graalvm \
+    && rm graalvm.tar.gz
+
+ENV JAVA_HOME=/opt/graalvm
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+# Install native-image
+RUN gu install native-image
+
+# Switch back to non-root user
+USER 1001
+
+COPY target/quarkus-app/lib/ /deployments/lib/
+COPY target/quarkus-app/*.jar /deployments/
+COPY target/quarkus-app/app/ /deployments/app/
+COPY target/quarkus-app/quarkus/ /deployments/quarkus/
+
+EXPOSE 8080
+
+ENTRYPOINT [ "java", "-jar", "/deployments/quarkus-run.jar" ]

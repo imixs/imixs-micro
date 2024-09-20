@@ -4,7 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.imixs.workflow</groupId>
 	<artifactId>imixs-micro</artifactId>
-	<packaging>jar</packaging>
+	<modules>
+		<module>imixs-micro-engine</module>
+		<module>imixs-micro-client</module>
+	</modules>
+	<packaging>pom</packaging>
+
+
 	<name>imixs-micro</name>
 	<version>1.0.0-SNAPSHOT</version>
 	<description>Imixs Micro Workflow Service</description>
