@@ -12,10 +12,23 @@
 
 	<description>Imixs-Workflow Client Uitls.</description>
 
+	<properties>
+		<quarkus.platform.version>3.14.4</quarkus.platform.version> <!-- Use the
+		version that matches your Quarkus version -->
+	</properties>
+
 	<build>
 	</build>
 
 	<dependencies>
+		<!-- JEE Dependencies -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>10.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 </project>

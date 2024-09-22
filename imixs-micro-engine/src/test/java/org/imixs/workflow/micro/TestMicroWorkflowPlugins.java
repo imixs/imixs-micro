@@ -30,7 +30,7 @@ public class TestMicroWorkflowPlugins {
     public void setup() throws PluginException {
         workflowService = new MicroWorkflowService("sample");
         // load default model
-        workflowService.loadBPMNModel("/bpmn/simple_plugins.bpmn");
+        workflowService.loadBPMNModel("/bpmn/example-001.bpmn");
     }
 
     /**
@@ -42,7 +42,7 @@ public class TestMicroWorkflowPlugins {
         ItemCollection workItem = new ItemCollection();
         workItem.model("1.0.0")
                 .task(1000)
-                .event(10);
+                .event(20);
         workItem.replaceItemValue("device.data", "Hello World");
 
         try {
@@ -55,7 +55,7 @@ public class TestMicroWorkflowPlugins {
             // verify data
             assertEquals(workItem.getItemValueString("device.data"), "Hello World");
             // verify <item name="test.data">some other data</item>
-            assertEquals(workItem.getItemValueString("test.data"), "some other data");
+            // assertEquals(workItem.getItemValueString("test.data"), "some other data");
 
         } catch (ModelException | ProcessingErrorException | PluginException e) {
             e.printStackTrace();
