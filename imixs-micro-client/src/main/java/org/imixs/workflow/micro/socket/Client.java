@@ -57,7 +57,7 @@ public class Client {
     }
 
     public ItemCollection receiveWorkitem() throws Exception {
-        return MESSAGES.poll(30, TimeUnit.SECONDS);
+        return MESSAGES.poll(10, TimeUnit.SECONDS);
     }
 
 }

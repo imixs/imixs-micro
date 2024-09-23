@@ -25,6 +25,7 @@ import org.imixs.workflow.micro.plugins.ResultPlugin;
 import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -42,6 +43,7 @@ public class WorkflowEngine {
 
     private static final Logger logger = Logger.getLogger(ResultPlugin.class.getName());
 
+    @Inject
     private MicroWorkflowService workflowService;
 
     /**
@@ -52,7 +54,9 @@ public class WorkflowEngine {
     @PostConstruct
     void init() throws PluginException {
         sessions = ConcurrentHashMap.newKeySet();
-        workflowService = new MicroWorkflowService("sample");
+        // workflowService = new MicroWorkflowService();
+
+        workflowService.setDevice("sample");
         // load default models
         loadDefaultModels();
     }

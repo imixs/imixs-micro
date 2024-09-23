@@ -10,6 +10,9 @@
       <imixs:value><![CDATA[CurrentEditor|namCurrentEditor]]></imixs:value>
     </imixs:item>
     <open-bpmn:auto-align>true</open-bpmn:auto-align>
+    <imixs:item name="txtplugins" type="xs:string">
+      <imixs:value><![CDATA[org.imixs.workflow.micro.plugins.ResultPlugin]]></imixs:value>
+    </imixs:item>
   </bpmn2:extensionElements>
   <bpmn2:signal id="Signal_1" name="org.imixs.application.adapter.DemoAdapter">
     <bpmn2:documentation id="Documentation_3"><![CDATA[Demo Adapter class]]></bpmn2:documentation>
@@ -545,7 +548,7 @@
         <imixs:item name="txtworkflowsummary" type="xs:string">
           <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
         </imixs:item>
-        <imixs:item name="txtworkflowabstract" type="CDATA">
+        <imixs:item name="txtworkflowabstract" type="xs:string">
           <imixs:value><![CDATA[Create a new Ticket workflow]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">

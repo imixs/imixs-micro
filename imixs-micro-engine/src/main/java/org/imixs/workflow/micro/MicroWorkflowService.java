@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.imixs.workflow.Adapter;
 import org.imixs.workflow.ItemCollection;
 import org.imixs.workflow.ModelManager;
 import org.imixs.workflow.Plugin;
@@ -29,6 +30,12 @@ import org.openbpmn.bpmn.BPMNModel;
 import org.openbpmn.bpmn.exceptions.BPMNModelException;
 import org.openbpmn.bpmn.util.BPMNModelFactory;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Instance;
+import jakarta.inject.Inject;
+
 /**
  * The MicroWorkflowEngine implements a lightweight workflow service. It can be
  * run on plain Java VMs.
@@ -37,6 +44,7 @@ import org.openbpmn.bpmn.util.BPMNModelFactory;
  * 
  * @see https://www.imixs.org
  */
+@ApplicationScoped
 public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
 
     private static final Logger logger = Logger.getLogger(MicroWorkflowService.class.getName());
@@ -56,16 +64,34 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
     private ModelManager openBPMNModelManager;
     private MicroSession session = null;
 
+    @Inject
+    @Any
+    private Instance<Plugin> plugins;
+
+    @Inject
+    @Any
+    protected Instance<Adapter> adapters;
+
     /**
      * Constructor creates a WorkflowContext and a WorkflowKernel
      * 
      * @throws PluginException
      */
+    public MicroWorkflowService() throws PluginException {
+        // Note: Remove any initialization logic from here
+        // and move it to a @PostConstruct method
+    }
 
-    public MicroWorkflowService(String device) throws PluginException {
+    @PostConstruct
+    public void init() {
+        // Initialization logic here
         database = new MemoryDB();
         openBPMNModelManager = new ModelManager();
-        session = new MicroSession(device);
+        session = new MicroSession("sample");
+    }
+
+    public void setDevice(String device) {
+        session.setDevice(device);
     }
 
     /**
@@ -527,14 +553,40 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
     /**
      * This method returns an injected Plugin by name or null if no plugin with the
      * requested class name is injected.
+     * <p>
+     * The method is using Class.forName(pluginClassName) to get the actual Class
+     * object and then uses isAssignableFrom() for comparison. This can be more
+     * reliable, especially if we have to deal with interfaces or superclasses:
      * 
      * @param pluginClassName
      * @return plugin class or null if not found
      */
     private Plugin findPluginByName(String pluginClassName) {
+
         if (pluginClassName == null || pluginClassName.isEmpty())
             return null;
+
         boolean debug = logger.isLoggable(Level.FINE);
+        if (plugins == null || !plugins.iterator().hasNext()) {
+            if (debug) {
+                logger.finest("......no CDI plugins injected");
+            }
+            return null;
+        }
+
+        try {
+            Class<?> expectedClass = Class.forName(pluginClassName);
+            for (Plugin plugin : this.plugins) {
+                if (expectedClass.isAssignableFrom(plugin.getClass())) {
+                    if (debug) {
+                        logger.log(Level.FINEST, "......CDI plugin ''{0}'' successfully injected", pluginClassName);
+                    }
+                    return plugin;
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, "Could not find class for name: " + pluginClassName, e);
+        }
 
         return null;
     }

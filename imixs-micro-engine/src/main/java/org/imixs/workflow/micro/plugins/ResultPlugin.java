@@ -36,6 +36,8 @@ import java.util.logging.Logger;
 import org.imixs.workflow.ItemCollection;
 import org.imixs.workflow.exceptions.PluginException;
 
+import jakarta.enterprise.context.RequestScoped;
+
 /**
  * This Plug-In evaluates the result message provided by the Activity property
  * 'txtActivityResult'. The value will be parsed for the xml tag 'item'
@@ -58,6 +60,7 @@ import org.imixs.workflow.exceptions.PluginException;
  * @see org.imixs.workflow.WorkflowManager
  * 
  */
+@RequestScoped
 public class ResultPlugin extends AbstractPlugin {
 
     public static List<String> SUPPORTED_KERNEL_ITEMS = Arrays.asList("$file", "$snapshot.history");
