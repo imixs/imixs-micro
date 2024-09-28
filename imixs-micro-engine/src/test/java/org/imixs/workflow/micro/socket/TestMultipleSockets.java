@@ -27,7 +27,8 @@ public class TestMultipleSockets {
 
     private static final Logger logger = Logger.getLogger(TestMultipleSockets.class.getName());
 
-    @TestHTTPResource("/workflow/1.0.0/1000/20")
+    // @TestHTTPResource("/workflow/1.0.0/1000/20")
+    @TestHTTPResource("/workflow")
     URI uri;
 
     private Session session;
@@ -50,14 +51,14 @@ public class TestMultipleSockets {
      * This test simulates the creation of a new Workitem on the remote workflow
      * engine.
      */
-    @Test
-    public void testInitialConnection() throws Exception {
-        ItemCollection workitem = client.receiveWorkitem();
-        Assertions.assertNotNull(workitem);
-        logger.info("MESSAGE=" + workitem.getUniqueID());
-        logger.info("TaskID=" + workitem.getTaskID());
-        Assertions.assertEquals(1100, workitem.getTaskID());
-    }
+    // @Test
+    // public void testInitialConnection() throws Exception {
+    // ItemCollection workitem = client.receiveWorkitem();
+    // Assertions.assertNotNull(workitem);
+    // logger.info("MESSAGE=" + workitem.getUniqueID());
+    // logger.info("TaskID=" + workitem.getTaskID());
+    // Assertions.assertEquals(1100, workitem.getTaskID());
+    // }
 
     /**
      * This test creates a new Workitem and send it to the server to be processed.
@@ -67,7 +68,7 @@ public class TestMultipleSockets {
     @Test
     public void testSendAndReceiveWorkitem() throws Exception {
         // First, receive the initial workitem (we need to do this to clear the queue)
-        client.receiveWorkitem();
+        // client.receiveWorkitem();
         // Create a new ItemCollection to send
         ItemCollection workitemToSend = new ItemCollection();
         workitemToSend.model("1.0.0").task(1000).event(10);

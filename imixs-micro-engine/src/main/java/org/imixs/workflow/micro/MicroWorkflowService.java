@@ -1,5 +1,6 @@
 package org.imixs.workflow.micro;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,6 @@ import org.imixs.workflow.exceptions.InvalidAccessException;
 import org.imixs.workflow.exceptions.ModelException;
 import org.imixs.workflow.exceptions.PluginException;
 import org.imixs.workflow.exceptions.ProcessingErrorException;
-import org.imixs.workflow.micro.plugins.ResultPlugin;
 import org.openbpmn.bpmn.BPMNModel;
 import org.openbpmn.bpmn.exceptions.BPMNModelException;
 import org.openbpmn.bpmn.util.BPMNModelFactory;
@@ -85,6 +85,7 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
     @PostConstruct
     public void init() {
         // Initialization logic here
+        logger.info("Initialize Workflow Service.....");
         database = new MemoryDB();
         openBPMNModelManager = new ModelManager();
         session = new MicroSession("sample");
@@ -120,6 +121,15 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
     public void loadBPMNModel(String modelPath) {
         try {
             BPMNModel model = BPMNModelFactory.read(modelPath);
+            getModelManager().addModel(model);
+        } catch (BPMNModelException | ModelException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadBPMNModel(InputStream inputStream) {
+        try {
+            BPMNModel model = BPMNModelFactory.read(inputStream);
             getModelManager().addModel(model);
         } catch (BPMNModelException | ModelException e) {
             e.printStackTrace();
@@ -365,7 +375,7 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
 
                     String tagName = attrMap.get("name");
                     if (tagName == null) {
-                        throw new PluginException(ResultPlugin.class.getSimpleName(), INVALID_TAG_FORMAT,
+                        throw new PluginException(MicroWorkflowService.class.getSimpleName(), INVALID_TAG_FORMAT,
                                 "<" + xmlTag + "> tag contains no name attribute.");
                     }
 
@@ -452,7 +462,7 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
                     }
 
                 } else {
-                    throw new PluginException(ResultPlugin.class.getSimpleName(), INVALID_TAG_FORMAT,
+                    throw new PluginException(MicroWorkflowService.class.getSimpleName(), INVALID_TAG_FORMAT,
                             "<" + xmlTag + "> tag contains no name attribute.");
 
                 }
@@ -461,7 +471,7 @@ public class MicroWorkflowService implements WorkflowManager, WorkflowContext {
 
         // test for general invalid format
         if (invalidPattern) {
-            throw new PluginException(ResultPlugin.class.getSimpleName(), INVALID_TAG_FORMAT,
+            throw new PluginException(MicroWorkflowService.class.getSimpleName(), INVALID_TAG_FORMAT,
                     "invalid <" + xmlTag + "> tag format in workflowResult: " + workflowResult
                             + "  , expected format is <"
                             + xmlTag + " name=\"...\">...</item> ");
