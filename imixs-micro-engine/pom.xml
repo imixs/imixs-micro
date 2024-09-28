@@ -88,15 +88,6 @@
         </dependency>
 
 
-        <!-- Imixs Workflow -->
-        <dependency>
-            <groupId>org.imixs.workflow</groupId>
-            <artifactId>imixs-micro-client</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-
     </dependencies>
 
     <build>

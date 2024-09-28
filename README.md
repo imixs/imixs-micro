@@ -79,3 +79,57 @@ The goal of the messaging between the Enterprise-Process Server and the Workstat
 
 
 <img src="./doc/example-002.png" />
+
+
+# How to Get Started
+
+You can test Imixs-Micro with Docker. The project provides a docker compose setup to simulate a test environment with a Enterprise Workflow  Server and three workstations.
+
+## Build
+
+First make sure to build the project with:
+
+```bash
+$ ./imixs-micro-engine/mvnw clean package -Dquarkus.container-image.build=true
+```
+
+To command will build the docker image to simulate a workstation.
+
+To build the client code you can run:
+
+```bash
+$ mvn clean install
+```
+
+
+## Start
+
+Now you can start the test environment with:
+
+
+```bash
+docker compose up
+```
+
+This will start the Enterprise Workflow server and tree workstations. 
+You can test the docker status with the command `docker ps`
+
+```bash
+$ docker ps
+CONTAINER ID   IMAGE                                COMMAND                  CREATED              STATUS              PORTS                                                                                                                             NAMES
+2fec832b21c4   imixs/imixs-micro-engine:latest      "java -jar /deployme…"   About a minute ago   Up About a minute   8443/tcp, 0.0.0.0:8082->8080/tcp, [::]:8082->8080/tcp                                                                             imixs-micro-workstation-2-1
+2f6c8548b6c5   imixs/imixs-micro-engine:latest      "java -jar /deployme…"   About a minute ago   Up About a minute   8443/tcp, 0.0.0.0:8083->8080/tcp, [::]:8083->8080/tcp                                                                             imixs-micro-workstation-3-1
+8530ae17c165   imixs/imixs-micro-engine:latest      "java -jar /deployme…"   About a minute ago   Up About a minute   8443/tcp, 0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp                                                                             imixs-micro-workstation-1-1
+450c33d928a5   postgres:13.11                       "docker-entrypoint.s…"   6 days ago           Up About a minute   5432/tcp                                                                                                                          imixs-micro-imixs-db-1
+85674cfa3e4e   imixs/imixs-process-manager:latest   "/opt/jboss/wildfly/…"   6 days ago           Up About a minute   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 0.0.0.0:8787->8787/tcp, :::8787->8787/tcp, 0.0.0.0:9990->9990/tcp, :::9990->9990/tcp   imixs-micro-imixs-app-1
+```
+
+## Test
+
+You can now login to the Enterprise Workflow server from your Web Browser: http://localhost:8080
+
+Use the user id 'admin' and the password 'adminadmin'
+
+You will see the Imixs-Process Manager Web Interface where you can upload your workflow models. Got to "Models" and upload the model `order-0.1.0.bpmn`. 
+
+
