@@ -119,17 +119,17 @@ This will start the Enterprise Workflow server and tree workstations.
     │ Enterprise Workflow Server │   
     │   Imixs-Process Manager    │  
     ╰──────┬────────────────┬──┬─╯ 
-           │ Web Socket     │  │      Web Socket
-           │                │  ╰───────────────────────╮
+           │ Web Socket     │  │      Web Socket 
+           │                │  ╰─────────────>>──────────╮
      ╔═╧═╧═╧═╧═╧═╧═══╗    ╔═╧═╧═╧═╧═╧═╧═══╗        ╔═╧═╧═╧═╧═╧═╧═══╗
      ║ Workstation-1 ║    ║ Workstation-2 ║        ║ Workstation-3 ║
      ║  Raspberry Pi ║    ║ Raspberry Pi  ║        ║ Raspberry Pi  ║     
      ╚═╤═╤═╤═╤═╤═╤═══╝    ╚═╤═╤═╤═╤═╤═╤═══╝        ╚═╤═╤═╤═╤═╤═╤═══╝
-       │                     │        
-       │                     │                   
-    ╭──┴─────╮            ╭──┴─────╮                 
-    │Sensor-1│            │Sensor-2│   
-    ╰────────╯            ╰────────╯                                    
+       │                      │       ╰──────<<──>>────────╯ 
+       │                      │            Web Socket (Bidirectional)     
+    ╭──┴─────╮             ╭──┴─────╮                 
+    │Sensor-1│             │Sensor-2│   
+    ╰────────╯             ╰────────╯                                    
  
 ```
 
