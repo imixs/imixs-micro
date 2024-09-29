@@ -89,7 +89,7 @@
     <bpmn2:task id="Task_2" imixs:processid="1800" name="Rejected">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>
@@ -119,7 +119,7 @@
     <bpmn2:task id="Task_4" imixs:processid="1300" name="Start Production">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>
@@ -193,7 +193,7 @@
     <bpmn2:task id="Task_3" imixs:processid="1310" name="in Progress">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>
@@ -242,9 +242,9 @@
     <bpmn2:task id="Task_1" imixs:processid="1000" name="New Order">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
-        <imixs:item name="txtworkflowabstract" type="CDATA">
+        <imixs:item name="txtworkflowabstract" type="xs:string">
           <imixs:value><![CDATA[Create a new Ticket workflow]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
@@ -289,7 +289,7 @@
     <bpmn2:task id="task_11caUA" imixs:processid="1200" name="Approval">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>
@@ -377,7 +377,7 @@
     <bpmn2:task id="task_VYvzhw" imixs:processid="1900" name="Order completed">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>
@@ -440,7 +440,7 @@
     <bpmn2:task id="task_xVcN9Q" imixs:processid="1400" name="Completed">
       <bpmn2:extensionElements>
         <imixs:item name="txtworkflowsummary" type="xs:string">
-          <imixs:value><![CDATA[<itemvalue>_ticketid</itemvalue> (<itemvalue>_teamName</itemvalue>) ]]></imixs:value>
+          <imixs:value><![CDATA[<itemvalue>order.number</itemvalue> - <itemvalue>customer.name</itemvalue> (<itemvalue>order.date</itemvalue>) ]]></imixs:value>
         </imixs:item>
         <imixs:item name="keyupdateacl" type="xs:boolean">
           <imixs:value>true</imixs:value>

@@ -31,6 +31,9 @@
     <bpmn2:messageFlow id="messageFlow_bRiJuw" name="Rest API call" sourceRef="event_d8HKMQ" targetRef="message_2BB7BA">
       <bpmn2:documentation id="documentation_A4PTFg"/>
     </bpmn2:messageFlow>
+    <bpmn2:messageFlow id="messageFlow_9Q0Ugg" sourceRef="message_i8eZ0w" targetRef="event_cwLypg">
+      <bpmn2:documentation id="documentation_6vHb0A"/>
+    </bpmn2:messageFlow>
   </bpmn2:collaboration>
   <bpmn2:process id="ticket" isExecutable="false" name="Production Workflow">
     <bpmn2:documentation id="documentation_wuFTnA"/>
@@ -229,12 +232,15 @@
       <bpmn2:documentation id="documentation_F5fFJA"/>
     </bpmn2:sequenceFlow>
   </bpmn2:process>
-  <bpmn2:message id="message_Tv76aQ" name="Production Details">
+  <bpmn2:message id="message_Tv76aQ" name="Update Production Details">
     <bpmn2:documentation id="documentation_oaxS1A"/>
     <bpmn2:incoming>messageFlow_ZLVOQA</bpmn2:incoming>
   </bpmn2:message>
-  <bpmn2:message id="message_2BB7BA" name="Production Details">
+  <bpmn2:message id="message_2BB7BA" name="Update Production Details">
     <bpmn2:documentation id="documentation_ViezZw"/>
+  </bpmn2:message>
+  <bpmn2:message id="message_i8eZ0w" name="Production Details">
+    <bpmn2:documentation id="documentation_0i7e0g"/>
   </bpmn2:message>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
@@ -334,30 +340,34 @@
         <dc:Bounds height="300.0" width="1200.0" x="100.0" y="70.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="messageFlow_ZLVOQA" id="BPMNEdge_rg7Okw" sourceElement="BPMNShape_n6TvJQ" targetElement="BPMNShape_ZKIj0w">
-        <di:waypoint x="477.0" y="195.0"/>
-        <di:waypoint x="465.0" y="195.0"/>
-        <di:waypoint x="465.0" y="329.0"/>
-        <di:waypoint x="495.0" y="329.0"/>
-        <di:waypoint x="495.0" y="420.0"/>
+        <di:waypoint x="495.0" y="177.0"/>
+        <di:waypoint x="495.0" y="10.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape bpmnElement="message_Tv76aQ" id="BPMNShape_ZKIj0w">
-        <dc:Bounds height="20.0" width="30.0" x="480.0" y="420.0"/>
+        <dc:Bounds height="20.0" width="30.0" x="480.0" y="-10.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_FEoCvQ">
-          <dc:Bounds height="20.0" width="100.0" x="446.0" y="445.0"/>
+          <dc:Bounds height="20.0" width="100.0" x="446.0" y="15.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="message_2BB7BA" id="BPMNShape_L68f0w">
-        <dc:Bounds height="20.0" width="30.0" x="740.0" y="430.0"/>
+        <dc:Bounds height="20.0" width="30.0" x="740.0" y="-10.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_Yih9EA">
-          <dc:Bounds height="20.0" width="100.0" x="708.0" y="469.0"/>
+          <dc:Bounds height="20.0" width="100.0" x="707.0" y="22.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="messageFlow_bRiJuw" id="BPMNEdge_6ygjJA" sourceElement="BPMNShape_GO8gzA" targetElement="BPMNShape_L68f0w">
-        <di:waypoint x="737.0" y="195.0"/>
-        <di:waypoint x="725.0" y="195.0"/>
-        <di:waypoint x="725.0" y="414.0"/>
-        <di:waypoint x="755.0" y="414.0"/>
-        <di:waypoint x="755.0" y="430.0"/>
+        <di:waypoint x="755.0" y="177.0"/>
+        <di:waypoint x="755.0" y="10.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="message_i8eZ0w" id="BPMNShape_l5HVGg">
+        <dc:Bounds height="20.0" width="30.0" x="230.0" y="-10.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_2CpJ7Q">
+          <dc:Bounds height="20.0" width="100.0" x="198.0" y="29.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="messageFlow_9Q0Ugg" id="BPMNEdge_rnZhdg" sourceElement="BPMNShape_l5HVGg" targetElement="BPMNShape_Ld3oUw">
+        <di:waypoint x="245.0" y="10.0"/>
+        <di:waypoint x="245.0" y="177.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
