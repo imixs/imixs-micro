@@ -128,8 +128,16 @@ CONTAINER ID   IMAGE                                COMMAND                  CRE
 
 You can now login to the Enterprise Workflow server from your Web Browser: http://localhost:8080
 
-Use the user id 'admin' and the password 'adminadmin'
+Use the user id 'admin' and the password 'adminadmin'. You will see the Imixs-Process Manager Web Interface where you can upload your workflow models.
 
-You will see the Imixs-Process Manager Web Interface where you can upload your workflow models. Got to "Models" and upload the model `order-0.1.0.bpmn`. 
+<img src="./doc/getting-started-01.png">
+
+Next go to "Models" and upload the model `order-1.0.0.bpmn` from the /workflow directory
+
+<img src="./doc/getting-started-01.png">
+
+Now you can start a new "Customer Order" workflow:
+
+<img src="./doc/getting-started-03.png">
 
 
